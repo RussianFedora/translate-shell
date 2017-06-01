@@ -1,5 +1,5 @@
 Name:           translate-shell
-Version:        0.9.6.3
+Version:        0.9.6.4
 Release:        1%{?dist}
 Summary:        A command-line online translator
 
@@ -46,5 +46,8 @@ sed -i 's|/usr/bin/env bash|/usr/bin/bash|' %{buildroot}%{_bindir}/trans
 
 
 %changelog
+* Thu Jun 01 2017 Vasiliy N. Glazov <vascom2@gmail.com> 0.9.6.4-1
+- Update to 0.9.6.4
+
 * Wed May 31 2017 Vasiliy N. Glazov <vascom2@gmail.com> 0.9.6.3-1
 - Initial packaging
