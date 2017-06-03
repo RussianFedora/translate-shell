@@ -1,6 +1,6 @@
 Name:           translate-shell
 Version:        0.9.6.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A command-line online translator
 
 License:        Public Domain
@@ -22,19 +22,16 @@ Yandex.Translate and Apertium.
 
 %prep
 %autosetup
-touch configure
-chmod +x configure
+sed -i 's|install: build|install:|' Makefile
+sed -i "s|/usr/local|%{buildroot}%{_prefix}|" Makefile
 
 
 %build
-%configure
 %make_build
-
+sed -i 's|/usr/bin/env bash|/usr/bin/bash|' build/trans
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make PREFIX=%{buildroot}%{_prefix} install
-sed -i 's|/usr/bin/env bash|/usr/bin/bash|' %{buildroot}%{_bindir}/trans
+%make_install
 
 
 %files
@@ -46,6 +43,9 @@ sed -i 's|/usr/bin/env bash|/usr/bin/bash|' %{buildroot}%{_bindir}/trans
 
 
 %changelog
+* Thu Jun 02 2017 Vasiliy N. Glazov <vascom2@gmail.com> 0.9.6.4-2
+- Clean spec
+
 * Thu Jun 01 2017 Vasiliy N. Glazov <vascom2@gmail.com> 0.9.6.4-1
 - Update to 0.9.6.4
 
